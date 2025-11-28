@@ -1,6 +1,7 @@
 # VivaCondo
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.1.
+This project was generated using
+[Angular CLI](https://github.com/angular/angular-cli) version 21.0.1.
 
 ## Development server
 
@@ -10,17 +11,21 @@ To start a local development server, run:
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Once the server is running, open your browser and navigate to
+`http://localhost:4200/`. The application will automatically reload whenever you
+modify any of the source files.
 
 ## Code scaffolding
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Angular CLI includes powerful code scaffolding tools. To generate a new
+component, run:
 
 ```bash
 ng generate component component-name
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+For a complete list of available schematics (such as `components`, `directives`,
+or `pipes`), run:
 
 ```bash
 ng generate --help
@@ -34,11 +39,14 @@ To build the project run:
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+This will compile your project and store the build artifacts in the `dist/`
+directory. By default, the production build optimizes your application for
+performance and speed.
 
 ## Running unit tests
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use
+the following command:
 
 ```bash
 ng test
@@ -52,8 +60,27 @@ For end-to-end (e2e) testing, run:
 ng e2e
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Angular CLI does not come with an end-to-end testing framework by default. You
+can choose one that suits your needs.
 
 ## Additional Resources
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+For more information on using the Angular CLI, including detailed command
+references, visit the
+[Angular CLI Overview and Command Reference](https://angular.dev/tools/cli)
+page.
+
+- criar projeto em angular com bun bun install -g @angular/cli ng new viva-condo
+  cd viva-condo npm start
+- adicionar bun no projeto bun init bun run index.ts
+
+> adicionar server para o bun no index.ts const server = Bun.serve({ port: 3000,
+> routes: { "/": () => new Response('Bun!'), } });
+> console.log(`Listening on ${server.url}`);
+
+- adicionar daisy no projeto bun add -D daisyui@latest
+
+> adicionar @import "tailwindcss"; @plugin "daisyui"; no css adcionar o tema no
+> css - @plugin "daisyui" {themes: winter, corporate, emerald, cmyk;}
+
+npx @tailwindcss/cli -i ./src/styles.css -o ./src/estilos.css --watch
