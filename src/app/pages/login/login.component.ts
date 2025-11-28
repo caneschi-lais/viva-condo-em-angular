@@ -64,7 +64,7 @@ export class LoginComponent {
       this.error.set("Erro ao logar: " + error.message);
       this.loading.set(false);
     } else {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/condominios']);
     }
   }
 }
