@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
-import { LucideAngularModule, Building2, Users, LogOut } from 'lucide-angular';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { LucideAngularModule } from 'lucide-angular';
+import { SupabaseService } from '../../services/supabase.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -28,7 +29,7 @@ import { LucideAngularModule, Building2, Users, LogOut } from 'lucide-angular';
       </ul>
 
       <div class="mt-auto p-4 border-t border-base-300">
-        <button class="btn btn-ghost w-full justify-start text-error gap-3">
+        <button class="btn btn-ghost w-full justify-start text-error gap-3" (click)="logout()">
           <lucide-icon name="log-out" class="w-5 h-5"></lucide-icon>
           Sair
         </button>
@@ -36,4 +37,15 @@ import { LucideAngularModule, Building2, Users, LogOut } from 'lucide-angular';
     </aside>
   `
 })
-export class SidebarComponent {}
+export class SidebarComponent {
+  private supabase = inject(SupabaseService).client;
+  private router = inject(Router);
+
+  async logout() {
+    // 1. Desconecta do Supabase (limpa sessão/cookies locais)
+    await this.supabase.auth.signOut();
+    
+    // 2. Redireciona para a tela de login
+    this.router.navigate(['/']);
+  }
+}
