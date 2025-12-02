@@ -12,11 +12,11 @@ export const routes: Routes = [
   { 
     path: 'condominios', 
     component: CondominiosComponent,
-    canActivate: [authGuard] // Adicione esta linha
+    canActivate: [authGuard]
   },
   { 
     path: 'usuarios', 
     component: UsuariosComponent,
-    canActivate: [authGuard] // Adicione esta linha
+    canActivate: [authGuard] 
   },
 ];
