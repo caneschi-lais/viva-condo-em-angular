@@ -1,17 +1,15 @@
-// src/app/services/condominio.service.ts
-
 import { Injectable, inject } from '@angular/core';
 import { SupabaseService } from './supabase.service';
 
 export interface ICondominio {
   id: number;
-  created_at?: string; // Opcional pois o banco gera automático
+  created_at?: string; 
   nome_condominio: string;
   tipo_condominio: string | null;
   endereco_condominio: string | null;
   cidade_condominio: string;
   uf_condominio: string;
-  id_administradora?: number | null; // Campo novo da imagem
+  id_administradora?: number | null; 
 }
 
 @Injectable({
@@ -19,13 +17,13 @@ export interface ICondominio {
 })
 export class CondominioService {
   private supabase = inject(SupabaseService).client;
-  private TABLE = 'condominio'; // Certifique-se que o nome é exatamente este no Supabase
+  private TABLE = 'condominio'; 
 
   async getCondominios(): Promise<ICondominio[]> {
     const { data, error } = await this.supabase
       .from(this.TABLE)
       .select('*')
-      .order('id', { ascending: true }); // Ordena por ID ou nome_condominio
+      .order('id', { ascending: true }); 
 
     if (error) {
       console.error('Erro ao buscar condomínios:', error);
@@ -34,7 +32,6 @@ export class CondominioService {
     return data || [];
   }
 
-  // ... (mantenha os outros métodos create e delete como estavam)
   async createCondominio(condominio: Omit<ICondominio, 'id'>) {
     const { data, error } = await this.supabase
       .from(this.TABLE)
