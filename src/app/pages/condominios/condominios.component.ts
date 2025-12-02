@@ -1,4 +1,4 @@
-import { Component, inject, signal, OnInit, NgZone } from '@angular/core'; // 1. Adicionado NgZone
+import { Component, inject, signal, OnInit, NgZone } from '@angular/core'; 
 import { CondominioService, ICondominio } from '../../services/condominio.service';
 import { SidebarComponent } from '../../layout/sidebar/sidebar.component';
 import { CommonModule } from '@angular/common';
@@ -116,7 +116,7 @@ import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angula
 })
 export class CondominiosComponent implements OnInit {
   private condominioService = inject(CondominioService);
-  private ngZone = inject(NgZone); // 3. Injeção do NgZone
+  private ngZone = inject(NgZone); 
   
   condominios = signal<ICondominio[]>([]);
   loading = signal(true);
@@ -129,13 +129,11 @@ export class CondominiosComponent implements OnInit {
     this.loading.set(true);
     
     try {
-      // Busca os dados no Supabase
       const data = await this.condominioService.getCondominios();
       
-      // 4. O segredo: Forçar a atualização dentro da Zona do Angular
       this.ngZone.run(() => {
         this.condominios.set(data);
-        this.loading.set(false); // Só remove o loading quando os dados estiverem prontos
+        this.loading.set(false); 
       });
 
     } catch (error) {
