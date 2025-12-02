@@ -9,7 +9,7 @@ export interface IUsuario {
   telefone: string | null;
   tipo_acesso: string | null;
   id_administradora: number;
-  id_authentication?: string | null; // UUID do Auth
+  id_authentication?: string | null; 
 }
 
 @Injectable({
@@ -29,15 +29,13 @@ export class UsuarioService {
     return data || [];
   }
 
-  // ATUALIZADO: Agora recebe a senha também
   async createUsuario(usuario: Omit<IUsuario, 'id' | 'created_at'>, senhaTemporaria: string) {
     
-    // 1. Tenta criar o usuário na Autenticação do Supabase (Auth)
     const { data: authData, error: authError } = await this.supabase.auth.signUp({
       email: usuario.email,
       password: senhaTemporaria,
       options: {
-        data: { nome: usuario.nome } // Metadados opcionais
+        data: { nome: usuario.nome } 
       }
     });
 
@@ -50,10 +48,9 @@ export class UsuarioService {
       throw new Error('Usuário criado, mas sem ID retornado.');
     }
 
-    // 2. Se deu certo, pega o UUID gerado e insere na tabela de dados
     const usuarioParaBanco = {
       ...usuario,
-      id_authentication: authData.user.id // O tal campo que estava faltando!
+      id_authentication: authData.user.id 
     };
 
     const { data, error } = await this.supabase
@@ -63,7 +60,6 @@ export class UsuarioService {
       .single();
 
     if (error) {
-      // Se der erro no banco, o ideal seria desfazer o Auth, mas vamos focar no erro atual.
       console.error('Erro ao salvar no banco:', error);
       throw error;
     }
