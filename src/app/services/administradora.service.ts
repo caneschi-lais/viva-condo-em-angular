@@ -11,7 +11,7 @@ export interface IAdministradora {
 })
 export class AdministradoraService {
   private supabase = inject(SupabaseService).client;
-  private TABLE = 'administradora'; // Nome exato do banco
+  private TABLE = 'administradora'; 
 
   async getAdministradoras(): Promise<IAdministradora[]> {
     const { data, error } = await this.supabase
