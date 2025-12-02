@@ -150,11 +150,10 @@ export class UsuariosComponent implements OnInit {
   loading = signal(true);
   salvando = signal(false);
 
-  // Adicionei o campo 'senha' no formulário
   userForm: FormGroup = this.fb.group({
     nome: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    senha: ['', [Validators.required, Validators.minLength(6)]], // Validação de senha
+    senha: ['', [Validators.required, Validators.minLength(6)]], 
     telefone: [''],
     tipo_acesso: ['', Validators.required],
     id_administradora: ['', Validators.required]
@@ -207,11 +206,9 @@ export class UsuariosComponent implements OnInit {
       id_administradora: Number(formValue.id_administradora)
     };
 
-    // Pega a senha separadamente
     const senha = formValue.senha;
 
     try {
-      // Passa a senha para o serviço
       await this.usuarioService.createUsuario(novoUsuario, senha);
       
       modal.close();
