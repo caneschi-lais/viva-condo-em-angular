@@ -42,10 +42,8 @@ export class SidebarComponent {
   private router = inject(Router);
 
   async logout() {
-    // 1. Desconecta do Supabase (limpa sessão/cookies locais)
     await this.supabase.auth.signOut();
     
-    // 2. Redireciona para a tela de login
     this.router.navigate(['/']);
   }
 }
